@@ -49,7 +49,7 @@ namespace WorldCupScraper
 
                         for (int i = 0; i < playerNames.Count(); ++i)
                         {
-                            playerClubMapping.Add(new Player() { Name = playerNames[i], Club = playerClubs[i], CupYear = cupYear});
+                            playerClubMapping.Add(new Player() { Name = playerNames[i].Replace(" †", string.Empty), Club = playerClubs[i], CupYear = cupYear});
                         }
 
                         Console.WriteLine("Added {0} players for {1}", playerNames.Count(), team);
