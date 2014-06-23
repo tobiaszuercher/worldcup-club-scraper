@@ -25,7 +25,6 @@ namespace WorldCupScraper
             var playerClubMapping = new ConcurrentStack<Player>();
 
             // find all cups
-
             Parallel.ForEach(home.Html.CssSelect("a[title~=Weltmeisterschaft]").Skip(1), cup =>
             {
                 var cupYear = cup.Attributes["title"].Value.Replace("Weltmeisterschaft ", string.Empty);
@@ -51,7 +50,12 @@ namespace WorldCupScraper
 
                         for (int i = 0; i < playerNames.Count(); ++i)
                         {
-                            playerClubMapping.Push(new Player() { Name = playerNames[i].Replace(" †", string.Empty), Club = playerClubs[i], CupYear = cupYear });
+                            playerClubMapping.Push(new Player()
+                            {
+                                Name = playerNames[i].Replace(" †", string.Empty),
+                                Club = playerClubs[i], 
+                                CupYear = cupYear
+                            });
                         }
 
                         Console.WriteLine("Added {0} players for {1} (World Cup {2})", playerNames.Count(), team, cupYear);
